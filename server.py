@@ -41,3 +41,5 @@ def upload_files():
                 return jsonify({'message':'file extension is not allowed'}), 400
             else:
                 return jsonify({'message':'upload '+str(len(accepted_file))+' files'}), 200
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
