@@ -22,7 +22,6 @@ def get_all_sentences():
                 # id.append(int(row['id']))
     finally:
         connection.close()
-    print(result)
     return result
 
 if __name__ == '__main__':
