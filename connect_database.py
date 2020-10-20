@@ -3,7 +3,6 @@ import pymysql.cursors
 
 def get_all_sentences():
     result = []
-    dict_sentences = {}
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='45rtfgvb',
@@ -15,6 +14,7 @@ def get_all_sentences():
             sql = "SELECT * FROM sentences "
             cursor.execute(sql)
             for row in cursor:
+                dict_sentences = {}
                 dict_sentences["id"] = row['id']
                 dict_sentences["sentence"] = row['script']
                 result.append(dict_sentences)
@@ -22,7 +22,7 @@ def get_all_sentences():
                 # id.append(int(row['id']))
     finally:
         connection.close()
-
+    print(result)
     return result
 
 if __name__ == '__main__':
