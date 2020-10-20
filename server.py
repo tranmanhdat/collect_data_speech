@@ -18,9 +18,6 @@ app.config['MAX_CONTENT_LENGTH'] = 20000 * 1024 * 1024
 @app.route('/get_ids', methods=['GET'])
 def get_ids():
     dict_sentences = get_all_sentences()
-    print(dict_sentences)
-    # for key, value in dict_sentences:
-    #     result.append({"id":str(key), "sentence":value})
     return jsonify(dict_sentences)
 @app.route('/upload_files', methods=['POST'])
 def upload_files():
