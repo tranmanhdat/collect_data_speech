@@ -20,7 +20,7 @@ def get_ids():
     result = []
     dict_sentences , ids = get_all_sentences()
     for key, value in dict_sentences:
-        result.append({"id":key, "sentence":value})
+        result.append({"id":str(key), "sentence":value})
     return jsonify(result)
 @app.route('/upload_files', methods=['POST'])
 def upload_files():
