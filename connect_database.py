@@ -2,8 +2,8 @@ import pymysql.cursors
 
 
 def get_all_sentences():
+    result = []
     dict_sentences = {}
-    id = []
     connection = pymysql.connect(host='localhost',
                                  user='root',
                                  password='45rtfgvb',
@@ -15,12 +15,15 @@ def get_all_sentences():
             sql = "SELECT * FROM sentences "
             cursor.execute(sql)
             for row in cursor:
-                dict_sentences[row['id']] = row['script']
-                id.append(int(row['id']))
+                dict_sentences["id"] = row['id']
+                dict_sentences["sentence"] = row['script']
+                result.append(dict_sentences)
+                # dict_sentences[row['id']] = row['script']
+                # id.append(int(row['id']))
     finally:
         connection.close()
 
-    return dict_sentences, id
+    return result
 
 if __name__ == '__main__':
     dict_sentences, id = get_all_sentences()
