@@ -115,11 +115,11 @@ li {
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
-  max-width: 1500px;
+  /*max-width: 1500px;*/
 }
 th, td {
   padding: 15px;
-  border: none;
+  border: 1px solid black;
 }
 .inactive {
   background: lightgray;

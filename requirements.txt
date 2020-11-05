@@ -1,4 +1,3 @@
 flask
 flask-restplus
-flask-restful-swagger
-pymysql
+pyopenssl
