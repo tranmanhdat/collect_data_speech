@@ -155,29 +155,34 @@ def thongke():
 def nghethu(id):
     global names, number_files, duration_each_user, files_path_each_user, ids_each_user
     name = names[id]
-    print(name)
+    # print(name)
     number_file = number_files[id]
     files_path = files_path_each_user[id]
     # for i in range(0, len(files_path)):
     #     files_path[i] = "/".join(files_path[i].split("/")[1:])
     ids = ids_each_user[id]
-    ids.sort()
+    ids, files_path = zip(*sorted(zip(ids, files_path)))
+    # print(ids)
     transcripts = []
     global dict_sentences
-    i=0
+    i = 0
     for dict_sentence in dict_sentences:
-        if dict_sentence["id"]==int(ids[i]):
+        if dict_sentence["id"] == int(ids[i]):
             transcripts.append(dict_sentence["sentence"])
             i = i + 1
-            if i==len(ids):
+            if i == len(ids):
                 break
     return render_template("nghethu.html", name=name, number_file=number_file,
-                           ids=ids, transcripts=transcripts, files_path=files_path)
+                           ids=ids, transcripts=transcripts,
+                           files_path=files_path)
+
+
 @app.route('/audios/<path:filename>')
 def download_file(filename):
     print(filename)
     return send_file(filename, as_attachment=True)
     # return send_from_directory('static', filename)
+
 
 if __name__ == "__main__":
     app.debug = True
