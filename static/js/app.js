@@ -105,7 +105,7 @@ function upload() {
             // alert(fileNames[j]);
             // console.log(fileNames[j]);
         }
-        xhr.open("POST", "http://127.0.0.1:5000/save_audios", true);
+        xhr.open("POST", "/save_audios", true);
         xhr.send(fd);
         alert("tải lên thành công");
         window.location = "/";

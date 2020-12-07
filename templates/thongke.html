@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Thong ke</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').dataTable({}); // dòng này để nhúng bảng biểu thành dạng bảng được phân trang
+        });
+    </script>
+</head>
+<body>
+<div class="container mt-3">
+    <h2>Thống kê thu âm</h2>
+    <!--    <p>Nhập vào từ khóa tìm kiếm:</p>-->
+    <!--    <input class="form-control" id="myInput" type="text"-->
+    <!--           placeholder="Tìm kiếm..">-->
+    <br>
+    <table class="table table-bordered" id="myTable">
+        <thead>
+        <tr>
+            <th>Tên người dùng</th>
+            <th>Số files</th>
+            <th>Tổng thời gian</th>
+            <th>Nghe thử</th>
+        </tr>
+        </thead>
+        <tbody id="myBody">
+        {% for i in range(0,number_names) %}
+        <tr>
+            <td>{{names[i]}}</td>
+            <td>{{number_files[i]}}</td>
+            <td>{{duration_each_user[i]}}</td>
+            <td><a href="{{ url_for('nghethu', id=i) }}">
+                <button>Nghe thử</button>
+            </a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        $("#myInput").on("keyup", function () {-->
+<!--            var value = $(this).val().toLowerCase();-->
+<!--            $("#myTable tr").filter(function () {-->
+<!--                $(this).toggle($(this).find("td:eq(0)").text().toLowerCase().indexOf(value) >-->
+<!--                    -1)-->
+<!--            });-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>

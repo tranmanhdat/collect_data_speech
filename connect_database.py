@@ -48,7 +48,7 @@ from random import shuffle
 if __name__ == '__main__':
     # write_sentence()
     # get_all_sentences()
-    with open("transcript.txt", "r") as f_in:
+    with open("transcript_1.txt", "r") as f_in:
         sentences = f_in.readlines()
         index = [i for  i in range(0,len(sentences))]
         shuffle(index)

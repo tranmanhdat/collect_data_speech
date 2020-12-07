@@ -1,3 +1,5 @@
 flask
 flask-restplus
 pyopenssl
+numba==0.48.0
+librosa
