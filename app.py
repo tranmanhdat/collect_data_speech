@@ -144,7 +144,10 @@ names, number_files, duration_each_user, files_path_each_user, ids_each_user = [
 def thongke():
     global names, number_files, duration_each_user, files_path_each_user, ids_each_user
     names, number_files, duration_each_user, files_path_each_user, ids_each_user = get_all_info()
-    return render_template("thongke.html", names=names,
+    total_sentences = sum(number_files)
+    total_duration = "{:.2f}".format(sum(duration_each_user)/3600)
+    return render_template("thongke.html", total_sentences=total_sentences,
+                           total_duration=total_duration, names=names,
                            number_files=number_files,
                            duration_each_user=duration_each_user,
                            files_path_each_user=files_path_each_user,
