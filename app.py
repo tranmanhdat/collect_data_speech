@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import time
 
+import librosa
 from flask import Flask, flash, redirect, url_for, send_from_directory, \
     send_file
 from flask import request, jsonify
@@ -153,7 +154,6 @@ def thongke():
                            files_path_each_user=files_path_each_user,
                            number_names=len(names))
 
-
 @app.route('/nghethu/<int:id>', methods=['GET', 'POST'])
 def nghethu(id):
     global names, number_files, duration_each_user, files_path_each_user, ids_each_user
@@ -185,6 +185,33 @@ def download_file(filename):
     print(filename)
     return send_file(filename, as_attachment=True)
     # return send_from_directory('static', filename)
+
+@app.route('/export_lst')
+def export_lst():
+    global files_path_each_user, ids_each_user
+    files_path = []
+    for file_path in files_path_each_user:
+        files_path = files_path + file_path
+    ids = []
+    for id_list in ids_each_user:
+        ids = ids + id_list
+    # print(files_path)
+    # print(ids)
+    ids, files_path = zip(*sorted(zip(ids, files_path)))
+    transcripts = []
+    global dict_sentences
+    i = 0
+    for id in ids:
+        while dict_sentences[i]["id"] < int(id):
+            i = i + 1
+        transcripts.append(dict_sentences[i]["sentence"])
+    duration = []
+    for file_path in files_path:
+        duration.append(round(librosa.get_duration(filename=file_path),2))
+    with open("static/collect_data_web.lst","w+") as f_write:
+        for i in range(0,len(ids)):
+            f_write.write("collect_data"+str(i)+"\t"+files_path[i]+"\t"+str(duration[i])+"\t"+transcripts[i])
+    return send_file("static/collect_data_web.lst", as_attachment=True)
 
 
 if __name__ == "__main__":

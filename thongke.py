@@ -40,6 +40,8 @@ def get_all_info():
     # print(duration_each_user)
     # print(number_files)
     # print(files_path_each_user)
+    for i in range(0, len(duration_each_user)):
+        duration_each_user[i] = round(duration_each_user[i],3)
     names, duration_each_user, number_files, files_path_each_user, ids_each_user = zip(
         *sorted(
                 zip(names, duration_each_user, number_files,

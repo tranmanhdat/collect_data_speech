@@ -25,6 +25,9 @@
     <h3>Số người thu âm: {{number_names}}</h3>
     <h3>Tổng số câu: {{total_sentences}}</h3>
     <h3>Tổng thời gian: {{total_duration}} giờ</h3>
+    <a href="{{ url_for('export_lst') }}">
+                <button>Xuất file lst</button>
+    </a>
     <!--    <p>Nhập vào từ khóa tìm kiếm:</p>-->
     <!--    <input class="form-control" id="myInput" type="text"-->
     <!--           placeholder="Tìm kiếm..">-->
